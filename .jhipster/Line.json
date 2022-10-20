@@ -1,0 +1,23 @@
+{
+  "changelogDate": "20221018164525",
+  "dto": "no",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "jpaMetamodelFiltering": true,
+  "name": "Line",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "id",
+      "otherEntityName": "board",
+      "relationshipName": "board",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

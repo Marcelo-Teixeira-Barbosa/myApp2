@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="card">
+      <h2 data-cy="cardDetailsHeading"><span jhiTranslate="myApp2App.card.detail.title">Card</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ card.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.card.title">Title</span></dt>
+        <dd>
+          <span>{{ card.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.card.level">Level</span></dt>
+        <dd>
+          <span>{{ card.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.card.desc">Desc</span></dt>
+        <dd>
+          <span>{{ card.desc }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.card.line">Line</span></dt>
+        <dd>
+          <div *ngIf="card.line">
+            <a [routerLink]="['/line', card.line.id, 'view']">{{ card.line.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/card', card.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

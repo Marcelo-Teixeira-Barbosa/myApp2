@@ -1,0 +1,38 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="line">
+      <h2 data-cy="lineDetailsHeading"><span jhiTranslate="myApp2App.line.detail.title">Line</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ line.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.line.title">Title</span></dt>
+        <dd>
+          <span>{{ line.title }}</span>
+        </dd>
+        <dt><span jhiTranslate="myApp2App.line.board">Board</span></dt>
+        <dd>
+          <div *ngIf="line.board">
+            <a [routerLink]="['/board', line.board.id, 'view']">{{ line.board.title }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/line', line.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>
