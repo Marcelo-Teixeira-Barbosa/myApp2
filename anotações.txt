@@ -1,0 +1,8 @@
+>>>Board prefab
+ao criar um board, automaticamente crair 3 linhas que apontam para tal board
+
+
+webapp angullar
+java java
+
+BoardService.java > Line

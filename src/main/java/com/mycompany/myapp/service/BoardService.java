@@ -1,7 +1,10 @@
 package com.mycompany.myapp.service;
 
 import com.mycompany.myapp.domain.Board;
+import com.mycompany.myapp.domain.Line;
 import com.mycompany.myapp.repository.BoardRepository;
+import com.mycompany.myapp.repository.LineRepository;
+import java.util.Arrays;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,8 +24,11 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public BoardService(BoardRepository boardRepository) {
+    private final LineRepository lineRepository;
+
+    public BoardService(BoardRepository boardRepository, LineRepository lineRepository) {
         this.boardRepository = boardRepository;
+        this.lineRepository = lineRepository;
     }
 
     /**
@@ -33,7 +39,17 @@ public class BoardService {
      */
     public Board save(Board board) {
         log.debug("Request to save Board : {}", board);
-        return boardRepository.save(board);
+        board = boardRepository.save(board);
+
+        for (String title : Arrays.asList("todo", "doing", "done")) {
+            Line line = new Line().title(title).board(board);
+            lineRepository.save(line);
+        }
+
+        //lineRepository.save(line);
+
+        return board;
+        //return boardRepository.save(board);
     }
 
     /**
