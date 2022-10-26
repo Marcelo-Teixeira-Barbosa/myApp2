@@ -70,14 +70,14 @@
       <tbody>
         <tr *ngFor="let card of cards; trackBy: trackId" data-cy="entityTable">
           <td>
-            <a [routerLink]="['/card', card.id, 'view']">{{ card.id }}</a>
+            <a [routerLink]="['/card', card.id, 'view']">{{ card.id }} aaaaaaaaaaaa</a>
           </td>
           <td>{{ card.title }}</td>
           <td>{{ card.level }}</td>
           <td>{{ card.desc }}</td>
           <td>
             <div *ngIf="card.line">
-              <a [routerLink]="['/line', card.line.id, 'view']">{{ card.line.id }}</a>
+              <a [routerLink]="['/line', card.line.title, 'view']">{{ card.line.title }}</a>
             </div>
           </td>
           <td class="text-end">

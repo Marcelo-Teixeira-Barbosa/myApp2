@@ -5,7 +5,7 @@ export interface ICard {
   title?: string | null;
   level?: number | null;
   desc?: string | null;
-  line?: Pick<ILine, 'id'> | null;
+  line?: ILine | null;
 }
 
 export type NewCard = Omit<ICard, 'id'> & { id: null };
