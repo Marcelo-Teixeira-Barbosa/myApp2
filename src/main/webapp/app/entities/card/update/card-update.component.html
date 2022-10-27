@@ -32,7 +32,9 @@
           <label class="form-label" jhiTranslate="myApp2App.card.line" for="field_line">Line</label>
           <select class="form-control" id="field_line" data-cy="line" name="line" formControlName="line" [compareWith]="compareLine">
             <option [ngValue]="null"></option>
-            <option [ngValue]="lineOption" *ngFor="let lineOption of linesSharedCollection">{{ lineOption.title }}</option>
+            <option [ngValue]="lineOption" *ngFor="let lineOption of linesSharedCollection">
+              {{ lineOption.board?.title }} -> {{ lineOption.title }}
+            </option>
           </select>
         </div>
       </div>

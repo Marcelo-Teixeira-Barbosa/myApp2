@@ -88,6 +88,12 @@ public class BoardQueryService extends QueryService<Board> {
             if (criteria.getTitle() != null) {
                 specification = specification.and(buildStringSpecification(criteria.getTitle(), Board_.title));
             }
+            if (criteria.getLineId() != null) {
+                specification =
+                    specification.and(
+                        buildSpecification(criteria.getLineId(), root -> root.join(Board_.lines, JoinType.LEFT).get(Line_.id))
+                    );
+            }
         }
         return specification;
     }

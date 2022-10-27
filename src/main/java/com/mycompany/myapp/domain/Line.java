@@ -1,5 +1,6 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
@@ -26,6 +27,7 @@ public class Line implements Serializable {
     private String title;
 
     @ManyToOne
+    @JsonIgnoreProperties(value = { "lines" }, allowSetters = true)
     private Board board;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

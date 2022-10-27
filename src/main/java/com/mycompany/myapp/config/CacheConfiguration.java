@@ -51,6 +51,7 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.domain.Board.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Line.class.getName());
             createCache(cm, com.mycompany.myapp.domain.Card.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Board.class.getName() + ".lines");
             // jhipster-needle-ehcache-add-entry
         };
     }

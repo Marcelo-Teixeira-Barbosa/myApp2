@@ -15,7 +15,7 @@
         [routerLink]="['/board/new']"
       >
         <fa-icon icon="plus"></fa-icon>
-        <span jhiTranslate="myApp2App.board.home.createLabel"> Criar nova Board </span>
+        <span jhiTranslate="myApp2App.board.home.createLabel"> Create a new Board </span>
       </button>
     </div>
   </h2>
@@ -57,6 +57,21 @@
           <td>{{ board.title }}</td>
           <td class="text-end">
             <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/line']"
+                [queryParams]="{ 'filter[boardId.in]': board.id }"
+                class="btn btn-info btn-sm"
+                data-cy="filterOtherEntityButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span
+                  class="d-none d-md-inline"
+                  jhiTranslate="entity.action.show"
+                  [translateValues]="{ otherEntity: ('myApp2App.board.line' | translate) }"
+                  >Show Line</span
+                >
+              </button>
               <button type="submit" [routerLink]="['/board', board.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
                 <fa-icon icon="eye"></fa-icon>
                 <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>

@@ -21,7 +21,7 @@
         <dt><span jhiTranslate="myApp2App.line.board">Board</span></dt>
         <dd>
           <div *ngIf="line.board">
-            <a [routerLink]="['/board', line.board.id, 'view']">{{ line.board.title }}</a>
+            <a [routerLink]="['/board', line.board.id, 'view']">{{ line.board.id }}</a>
           </div>
         </dd>
       </dl>

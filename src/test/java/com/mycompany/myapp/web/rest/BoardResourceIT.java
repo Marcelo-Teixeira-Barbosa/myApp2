@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.domain.Board;
+import com.mycompany.myapp.domain.Line;
 import com.mycompany.myapp.repository.BoardRepository;
 import com.mycompany.myapp.service.criteria.BoardCriteria;
 import java.util.List;
@@ -222,6 +223,29 @@ class BoardResourceIT {
 
         // Get all the boardList where title does not contain UPDATED_TITLE
         defaultBoardShouldBeFound("title.doesNotContain=" + UPDATED_TITLE);
+    }
+
+    @Test
+    @Transactional
+    void getAllBoardsByLineIsEqualToSomething() throws Exception {
+        Line line;
+        if (TestUtil.findAll(em, Line.class).isEmpty()) {
+            boardRepository.saveAndFlush(board);
+            line = LineResourceIT.createEntity(em);
+        } else {
+            line = TestUtil.findAll(em, Line.class).get(0);
+        }
+        em.persist(line);
+        em.flush();
+        board.addLine(line);
+        boardRepository.saveAndFlush(board);
+        Long lineId = line.getId();
+
+        // Get all the boardList where line equals to lineId
+        defaultBoardShouldBeFound("lineId.equals=" + lineId);
+
+        // Get all the boardList where line equals to (lineId + 1)
+        defaultBoardShouldNotBeFound("lineId.equals=" + (lineId + 1));
     }
 
     /**

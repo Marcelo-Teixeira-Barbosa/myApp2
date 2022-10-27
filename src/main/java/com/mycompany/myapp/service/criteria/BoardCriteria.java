@@ -25,6 +25,8 @@ public class BoardCriteria implements Serializable, Criteria {
 
     private StringFilter title;
 
+    private LongFilter lineId;
+
     private Boolean distinct;
 
     public BoardCriteria() {}
@@ -32,6 +34,7 @@ public class BoardCriteria implements Serializable, Criteria {
     public BoardCriteria(BoardCriteria other) {
         this.id = other.id == null ? null : other.id.copy();
         this.title = other.title == null ? null : other.title.copy();
+        this.lineId = other.lineId == null ? null : other.lineId.copy();
         this.distinct = other.distinct;
     }
 
@@ -70,6 +73,21 @@ public class BoardCriteria implements Serializable, Criteria {
         this.title = title;
     }
 
+    public LongFilter getLineId() {
+        return lineId;
+    }
+
+    public LongFilter lineId() {
+        if (lineId == null) {
+            lineId = new LongFilter();
+        }
+        return lineId;
+    }
+
+    public void setLineId(LongFilter lineId) {
+        this.lineId = lineId;
+    }
+
     public Boolean getDistinct() {
         return distinct;
     }
@@ -87,12 +105,17 @@ public class BoardCriteria implements Serializable, Criteria {
             return false;
         }
         final BoardCriteria that = (BoardCriteria) o;
-        return Objects.equals(id, that.id) && Objects.equals(title, that.title) && Objects.equals(distinct, that.distinct);
+        return (
+            Objects.equals(id, that.id) &&
+            Objects.equals(title, that.title) &&
+            Objects.equals(lineId, that.lineId) &&
+            Objects.equals(distinct, that.distinct)
+        );
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, distinct);
+        return Objects.hash(id, title, lineId, distinct);
     }
 
     // prettier-ignore
@@ -101,6 +124,7 @@ public class BoardCriteria implements Serializable, Criteria {
         return "BoardCriteria{" +
             (id != null ? "id=" + id + ", " : "") +
             (title != null ? "title=" + title + ", " : "") +
+            (lineId != null ? "lineId=" + lineId + ", " : "") +
             (distinct != null ? "distinct=" + distinct + ", " : "") +
             "}";
     }

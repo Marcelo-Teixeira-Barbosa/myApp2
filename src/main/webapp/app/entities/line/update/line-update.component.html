@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-center">
   <div class="col-8">
     <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
-      <h2 id="jhi-line-heading" data-cy="LineCreateUpdateHeading" jhiTranslate="myApp2App.line.home.createOrEditLabel">Create a Line</h2>
+      <h2 id="jhi-line-heading" data-cy="LineCreateUpdateHeading" jhiTranslate="myApp2App.line.home.createOrEditLabel">
+        Create or edit a Line
+      </h2>
 
       <div>
         <jhi-alert-error></jhi-alert-error>
@@ -20,7 +22,7 @@
           <label class="form-label" jhiTranslate="myApp2App.line.board" for="field_board">Board</label>
           <select class="form-control" id="field_board" data-cy="board" name="board" formControlName="board" [compareWith]="compareBoard">
             <option [ngValue]="null"></option>
-            <option [ngValue]="boardOption" *ngFor="let boardOption of boardsSharedCollection">{{ boardOption.title }}</option>
+            <option [ngValue]="boardOption" *ngFor="let boardOption of boardsSharedCollection">{{ boardOption.id }}</option>
           </select>
         </div>
       </div>
@@ -38,16 +40,6 @@
           class="btn btn-primary"
         >
           <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
-        </button>
-
-        <button
-          type="submit"
-          id="save-entity"
-          data-cy="entityCreateSaveButton"
-          [disabled]="editForm.invalid || isSaving"
-          class="btn btn-success"
-        >
-          <fa-icon></fa-icon>&nbsp;<span jhiTranslate="entity.action.summon">Create Trello</span>
         </button>
       </div>
     </form>

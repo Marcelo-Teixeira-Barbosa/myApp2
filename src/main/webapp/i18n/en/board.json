@@ -6,7 +6,8 @@
         "refreshListLabel": "Refresh list",
         "createLabel": "Create a new Board",
         "createOrEditLabel": "Create or edit a Board",
-        "notFound": "No Boards found"
+        "notFound": "No Boards found",
+        "line": "Lines"
       },
       "created": "A new Board is created with identifier {{ param }}",
       "updated": "A Board is updated with identifier {{ param }}",
@@ -18,7 +19,8 @@
         "title": "Board"
       },
       "id": "ID",
-      "title": "Title"
+      "title": "Title",
+      "line": "Lines"
     }
   }
 }

@@ -18,6 +18,13 @@
         <dd>
           <span>{{ board.title }}</span>
         </dd>
+        <dt><span jhiTranslate="myApp2App.board.line">Lines</span></dt>
+        <dd>
+          <span>{{ board.title }}</span>
+          <div *ngIf="board.line">
+            <a [routerLink]="['/line', board.line, 'view']">{{ board.id }}</a>
+          </div>
+        </dd>
       </dl>
 
       <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">

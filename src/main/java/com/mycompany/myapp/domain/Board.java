@@ -1,6 +1,9 @@
 package com.mycompany.myapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -24,6 +27,11 @@ public class Board implements Serializable {
 
     @Column(name = "title")
     private String title;
+
+    @OneToMany(mappedBy = "board")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "board" }, allowSetters = true)
+    private Set<Line> lines = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -51,6 +59,37 @@ public class Board implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Set<Line> getLines() {
+        return this.lines;
+    }
+
+    public void setLines(Set<Line> lines) {
+        if (this.lines != null) {
+            this.lines.forEach(i -> i.setBoard(null));
+        }
+        if (lines != null) {
+            lines.forEach(i -> i.setBoard(this));
+        }
+        this.lines = lines;
+    }
+
+    public Board lines(Set<Line> lines) {
+        this.setLines(lines);
+        return this;
+    }
+
+    public Board addLine(Line line) {
+        this.lines.add(line);
+        line.setBoard(this);
+        return this;
+    }
+
+    public Board removeLine(Line line) {
+        this.lines.remove(line);
+        line.setBoard(null);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
