@@ -23,6 +23,9 @@ const boardRoute: Routes = [
     resolve: {
       board: BoardRoutingResolveService,
     },
+    data: {
+      defaultSort: 'id,' + ASC,
+    },
     canActivate: [UserRouteAccessService],
   },
   {

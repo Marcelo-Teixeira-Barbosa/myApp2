@@ -20,9 +20,9 @@
         </dd>
         <dt><span jhiTranslate="myApp2App.board.line">Lines</span></dt>
         <dd>
-          <span>{{ board.title }}</span>
-          <div *ngIf="board.line">
-            <a [routerLink]="['/line', board.line, 'view']">{{ board.id }}</a>
+          <!--<span>{{ board.title }}</span>-->
+          <div *ngFor="let i of lines">
+            <span>{{ i.title }}</span>
           </div>
         </dd>
       </dl>
